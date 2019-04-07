@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.agoncal.application</groupId>
+  <artifactId>petstoreee7</artifactId>
+  <version>7.0</version>
+  <packaging>war</packaging>
+  <name>Petstore application using Java EE 7</name>
+
+  <properties>
+    <version.javaee>7.0</version.javaee>
+    <version.jboss-javaee>1.1.0.Final</version.jboss-javaee>
+    <version.log4j>2.8.2</version.log4j>
+    <!-- App servers -->
+    <version.wildfly>11.0.0.Final</version.wildfly>
+    <!-- UI (WebJar, Bootstrap, JQuery...) -->
+    <version.bootstrap>3.3.7-1</version.bootstrap>
+    <version.jquery>2.2.4</version.jquery>
+    <version.primefaces>6.1</version.primefaces>
+    <version.primefaces-themes>1.0.10</version.primefaces-themes>
+    <version.fontawesome>4.7.0</version.fontawesome>
+    <!-- Other -->
+    <version.swagger>1.5.17</version.swagger>
+    <!--Maven Plugins & co-->
+    <version.maven.war.plugin>3.1.0</version.maven.war.plugin>
+    <version.maven.compiler.plugin>3.1</version.maven.compiler.plugin>
+    <version.maven.dependency.plugin>2.10</version.maven.dependency.plugin>
+    <version.maven.surefire.plugin>2.19.1</version.maven.surefire.plugin>
+    <version.maven.failsafe.plugin>2.19.1</version.maven.failsafe.plugin>
+    <version.swagger.plugin>3.1.6</version.swagger.plugin>
+    <!-- Project -->
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${version.log4j}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>${version.bootstrap}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>${version.jquery}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.primefaces</groupId>
+        <artifactId>primefaces</artifactId>
+        <version>${version.primefaces}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.primefaces.themes</groupId>
+        <artifactId>all-themes</artifactId>
+        <version>${version.primefaces-themes}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars.bower</groupId>
+        <artifactId>fontawesome</artifactId>
+        <version>${version.fontawesome}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.spec</groupId>
+        <artifactId>jboss-javaee-7.0</artifactId>
+        <version>${version.jboss-javaee}</version>
+        <type>pom</type>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>${version.swagger}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>bootstrap</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jquery</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.primefaces.themes</groupId>
+      <artifactId>all-themes</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars.bower</groupId>
+      <artifactId>fontawesome</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.spec</groupId>
+      <artifactId>jboss-javaee-7.0</artifactId>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.47</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>4.3.11.Final</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>applicationPetstore</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${version.maven.war.plugin}</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.github.kongchen</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <version>${version.swagger.plugin}</version>
+        <configuration>
+          <apiSources>
+            <apiSource>
+              <springmvc>false</springmvc>
+              <locations>org.agoncal.application.petstore.rest</locations>
+              <schemes>http,https</schemes>
+              <host>localhost:8080</host>
+              <basePath>/applicationPetstore/rest</basePath>
+              <outputFormats>json</outputFormats>
+              <info>
+                <title>Petstore APIs</title>
+                <version>1.0.0</version>
+                <description>PetStore APIs exposed</description>
+                <contact>
+                  <email>antonio.goncalves@gmail.com</email>
+                  <name>Antonio Goncalves</name>
+                  <url>https://antoniogoncalves.org/</url>
+                </contact>
+              </info>
+              <swaggerDirectory>${basedir}/src/main/webapp</swaggerDirectory>
+              <attachSwaggerArtifact>true</attachSwaggerArtifact>
+            </apiSource>
+          </apiSources>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-hibernate-validations</artifactId>
+            <version>${version.swagger}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>primefaces</id>
+      <url>http://repository.primefaces.org/</url>
+    </repository>
+  </repositories>
+
+</project>

@@ -1,0 +1,37 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="petstoreee7:war exploded">
+    <output-path>$PROJECT_DIR$/application/target/applicationPetstore</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>petstoreee7</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="petstoreee7" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: io.swagger:swagger-annotations:1.5.17" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.8.2" />
+          <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.8.2" />
+          <element id="library" level="project" name="Maven: org.webjars:bootstrap:3.3.7-1" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:2.2.4" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:6.1" />
+          <element id="library" level="project" name="Maven: org.primefaces.themes:all-themes:1.0.10" />
+          <element id="library" level="project" name="Maven: org.webjars.bower:fontawesome:4.7.0" />
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.1.7" />
+          <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.1.7" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.15" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/application/target/applicationPetstore/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="petstoreee7/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,109 @@
+---
+
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: 'Check mandatory variables are defined'
+      assert:
+        that:
+          - ibm_username is defined
+          - ibm_password is defined
+
+
+    - name: Install common packages
+      yum:
+        name: "{{ common_packages }}"
+        state: present
+
+    - name: Include "Python" role
+      include_role:
+        name: "{{ item }}"
+      with_items:
+        - "geerlingguy.pip"
+
+    - name: Include "Firewall" role
+      include_role:
+        name: "geerlingguy.firewall"
+
+    - name: Create "Installation Manager" temporary directory
+      file:
+        state: directory
+        path: /tmp/im
+
+    - name: Unarchive "Installation Manager" zip to temporary directory
+      unarchive:
+        src: "{{ ibm_agent_archive }}"
+        dest: /tmp/im/
+
+    - name: Install "Installation Manager"
+      ibmim_installer:
+        src: /tmp/im/
+
+    - name: Create master password file
+      copy:
+        dest: "/opt/IBM/master_password.txt"
+        content: |
+          passphrase
+
+    - name: Check that the storage file exists
+      stat:
+        path: "/opt/IBM/storage_file.txt"
+      register: storage_file_stat_result
+
+    - name: Create credentials storage file
+      command: "./imutilsc saveCredential
+        -userName {{ ibm_username | mandatory }}
+        -userPassword {{ ibm_password | mandatory }}
+        -passportAdvantage
+        -secureStorageFile /opt/IBM/storage_file.txt
+        -masterPasswordFile /opt/IBM/master_password.txt"
+      args:
+        chdir: "/opt/IBM/InstallationManager/eclipse/tools"
+      when: storage_file_stat_result.stat.exists == False
+
+    - name: List packages
+      command: "./imcl listAvailablePackages
+        -repositories {{ ibm_repositories | join(',') }}
+        -secureStorageFile /opt/IBM/storage_file.txt
+        -masterPasswordFile /opt/IBM/master_password.txt
+        -acceptLicense
+        -showProgress"
+      args:
+        chdir: "/opt/IBM/InstallationManager/eclipse/tools"
+      when: ibm_list_repository_before_installation
+
+    - name: Start async install IBM packages
+      command: "./imcl install {{ ibm_packages | join(' ') }}
+        -repositories {{ ibm_repositories | join(',') }}
+        -secureStorageFile /opt/IBM/storage_file.txt
+        -masterPasswordFile /opt/IBM/master_password.txt
+        -acceptLicense
+        -showProgress"
+      args:
+        chdir: "/opt/IBM/InstallationManager/eclipse/tools"
+      async: 7200
+      poll: 0
+      register: ibm_packages_install_sleeper
+
+    - name: Check on async install IBM packages task
+      async_status:
+        jid: "{{ ibm_packages_install_sleeper.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: 7200
+
+    - name: Create Websphere "AppSrv01" profile
+      command: "./manageprofiles.sh -create
+        -profileName AppSrv01
+        -templatePath /opt/IBM/WebSphere/AppServer/profileTemplates/default
+        -enableAdminSecurity true
+        -adminUserName {{ ibm_server_admin_username }}
+        -adminPassword {{ ibm_server_admin_password }}"
+      args:
+        chdir: "/opt/IBM/WebSphere/AppServer/bin"
+
+    - name: Start Websphere "AppSrv01" server
+      command: "./startServer.sh server1"
+      args:
+        chdir: "/opt/IBM/WebSphere/AppServer/profiles/AppSrv01/bin"

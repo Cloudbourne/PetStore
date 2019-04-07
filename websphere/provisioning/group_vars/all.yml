@@ -1,0 +1,43 @@
+firewall_state: started
+firewall_enabled_at_boot: true
+firewall_allowed_tcp_ports:
+  - "22"
+  - "2222"
+  - "9060"
+  - "9061"
+  - "9043"
+  - "9044"
+  - "9080"
+  - "9443"
+  - "9960"
+  - "2809"
+  - "8880"
+firewall_forwarded_udp_ports: []
+
+common_packages:
+  - zip
+  - unzip
+  - tar
+  - git
+  - wget
+  - curl
+  - nano
+  - vim
+  - screen
+  - mc
+
+ibm_agent_archive: '/vagrant/software/agent.installer.linux.gtk.x86_64_1.8.8000.20171130_1105.zip'
+mysql_jar: '/vagrant/software/mysql-connector-java-5.1.47.jar'
+
+ibm_username: ''
+ibm_password: ''
+ibm_repositories:
+  - 'http://www.ibm.com/software/repositorymanager/V9WASBase'
+ibm_list_repository_before_installation: False
+ibm_packages:
+  - 'com.ibm.websphere.BASE.v90_9.0.11.20190312_2048'
+  - 'com.ibm.java.jdk.v8_8.0.5031.20190327_1056'
+
+ibm_server_admin_username: 'admin'
+ibm_server_admin_password: 'password'
+

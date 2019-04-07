@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+VAGRANT_COMMAND = ARGV[0]
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "centos/7"
+  config.vbguest.auto_update = true
+
+  config.vm.network :private_network, ip: "192.168.66.66"
+  config.ssh.insert_key = true
+
+  config.vm.provider "virtualbox" do |v|
+    v.name = "websphere.host"
+    v.cpus = 2
+    v.memory = 4096
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--ioapic", "on"]
+  end
+
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.compatibility_mode = "2.0"
+    ansible.become_user = "root"
+    ansible.become = true
+    ansible.verbose = true
+    ansible.playbook = "provisioning/main.yml"
+    ansible.galaxy_role_file = "provisioning/requirements.yml"
+    ansible.galaxy_roles_path = "/etc/ansible/roles"
+    ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path}"
+  end
+
+end
