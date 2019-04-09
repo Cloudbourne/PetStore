@@ -210,7 +210,7 @@
     <profile>
       <id>websphere</id>
       <properties>
-        <mysql.jdbc.url>jdbc:mysql://mysql-websphere:3306/default</mysql.jdbc.url>
+        <mysql.jdbc.url>jdbc:mysql://localhost:3307/default</mysql.jdbc.url>
       </properties>
       <build>
         <finalName>applicationPetstore-websphere</finalName>
