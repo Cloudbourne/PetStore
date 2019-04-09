@@ -1,7 +1,9 @@
 ### 1) Application
 
 * ```cd application```
-* ```mvn clean package -Dmaven.test.skip=true```
+* ```mvn clean```
+* ```mvn package -Ptomcat```
+* ```mvn package -Pwebsphere```
 
 ### 2) Mysql
 

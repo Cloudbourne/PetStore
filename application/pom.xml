@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.agoncal.application</groupId>
@@ -35,6 +36,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+
+    <mysql.jdbc.url>jdbc:mysql://mysql:3306/default</mysql.jdbc.url>
   </properties>
 
   <dependencyManagement>
@@ -129,12 +132,22 @@
 
   <build>
     <finalName>applicationPetstore</finalName>
+
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>${version.maven.war.plugin}</version>
         <configuration>
           <failOnMissingWebXml>false</failOnMissingWebXml>
+          <webResources>
+            <resource>
+              <filtering>true</filtering>
+              <directory>src/main/webapp</directory>
+              <includes>
+                <include>WEB-INF/resources.xml</include>
+              </includes>
+            </resource>
+          </webResources>
         </configuration>
       </plugin>
       <plugin>
@@ -183,6 +196,27 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>tomcat</id>
+      <properties>
+        <mysql.jdbc.url>jdbc:mysql://mysql-tomcat:3306/default</mysql.jdbc.url>
+      </properties>
+      <build>
+        <finalName>applicationPetstore-tomcat</finalName>
+      </build>
+    </profile>
+    <profile>
+      <id>websphere</id>
+      <properties>
+        <mysql.jdbc.url>jdbc:mysql://mysql-websphere:3306/default</mysql.jdbc.url>
+      </properties>
+      <build>
+        <finalName>applicationPetstore-websphere</finalName>
+      </build>
+    </profile>
+  </profiles>
 
   <repositories>
     <repository>
