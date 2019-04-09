@@ -5,10 +5,12 @@
 
   <persistence-unit name="applicationPetstorePU" transaction-type="JTA">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <jta-data-source>java:comp/env/DefaultDataSource</jta-data-source>
+    <jta-data-source>${jta.datasource.name}</jta-data-source>
+    <non-jta-data-source>${jta.datasource.name}</non-jta-data-source>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       <property name="javax.persistence.sql-load-script-source" value="init_db.sql"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.ejb.naming_strategy"

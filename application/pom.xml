@@ -37,6 +37,7 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
 
+    <jta.datasource.name>java:comp/env/DefaultDataSource</jta.datasource.name>
     <mysql.jdbc.url>jdbc:mysql://mysql:3306/default</mysql.jdbc.url>
   </properties>
 
@@ -132,7 +133,23 @@
 
   <build>
     <finalName>applicationPetstore</finalName>
-
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>META-INF/persistence.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>*</include>
+          <include>META-INF/validation.xml</include>
+        </includes>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
@@ -211,6 +228,7 @@
       <id>websphere</id>
       <properties>
         <mysql.jdbc.url>jdbc:mysql://localhost:3307/default</mysql.jdbc.url>
+        <jta.datasource.name>DefaultDataSource</jta.datasource.name>
       </properties>
       <build>
         <finalName>applicationPetstore-websphere</finalName>
