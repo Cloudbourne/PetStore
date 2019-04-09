@@ -43,7 +43,7 @@ services:
     build:
       context: ./tomcat
     volumes:
-      - ../application/target/applicationPetstore.war:/usr/local/tomee/webapps/applicationPetstore.war
+      - ../application/target/applicationPetstore-tomcat.war:/usr/local/tomee/webapps/applicationPetstore.war
     ports:
       - "${TOMCAT_PORT}:8080"
       - "${TOMCAT_DEBUG_PORT}:5000"
