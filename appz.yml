@@ -8,14 +8,14 @@ build:
   env: DEV
   build_file: pom.xml
   output_files: application/target/*.war
-  image_template: tomcat8
+  image_template: tomee7
   image_name: myco/petstore
 
 deploy:
   context: myco/DEV
   replicas: 1
   port:
-  - 8080
+  - 5000
 
 monitor:
   notify: appzops@cloudbourne.co      
