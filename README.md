@@ -1,6 +1,6 @@
 ## PetStore WebSphere Version 
 
-This branch (master) holds the original source of the application that was deployed in WebSphere. The project was then refactored to work on Tomcat on AppZ. See appz branch for that version.
+This branch (master) holds the original source of the application that was deployed in WebSphere. The project was then refactored to work on Tomcat on [AppZ](http://ecloudcontrol.com). See appz branch for that version.
 
 ### Application
 
