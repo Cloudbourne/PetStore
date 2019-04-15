@@ -236,6 +236,17 @@
         <finalName>applicationPetstore-websphere</finalName>
       </build>
     </profile>
+    <profile>
+      <id>custom</id>
+      <properties>
+        <mysql.jdbc.url>jdbc:mysql://mysql:3306/petstore</mysql.jdbc.url>
+        <mysql.user>petstore</mysql.user>
+        <mysql.password>petstore</mysql.password>
+      </properties>
+      <build>
+        <finalName>applicationPetstore-custom</finalName>
+      </build>
+    </profile>
   </profiles>
 
   <repositories>
