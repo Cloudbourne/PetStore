@@ -1,17 +1,17 @@
-### PetStore WebSphere Version
+## PetStore WebSphere Version
 
-## Application
+### Application
 
 * ```cd application```
 * ```mvn clean```
 * ```mvn package -Pwebsphere```
 
-## Mysql
+### Mysql
 
 * ```cd docker```
 * ```docker-compose up -d mysql```
 
-## IBM Websphere
+### IBM Websphere
 
 * ```cd webspere```
 * ```vagrant plugin install vagrant-vbguest```
