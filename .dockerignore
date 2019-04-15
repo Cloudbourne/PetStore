@@ -1,5 +1,9 @@
 *
 !Dockerfile
 !application
+application/src
 !application/target
+!docker
+docker/mysql
+!docker/tomcat
 !configuration

@@ -41,9 +41,7 @@ services:
 
   tomcat:
     build:
-      context: ./tomcat
-    volumes:
-      - ../application/target/applicationPetstore-tomcat.war:/usr/local/tomee/webapps/applicationPetstore.war
+      context: ../
     ports:
       - "${TOMCAT_PORT}:8080"
       - "${TOMCAT_DEBUG_PORT}:5000"
