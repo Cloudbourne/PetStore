@@ -39,6 +39,8 @@
 
     <jta.datasource.name>java:comp/env/DefaultDataSource</jta.datasource.name>
     <mysql.jdbc.url>jdbc:mysql://mysql:3306/default</mysql.jdbc.url>
+    <mysql.user>default</mysql.user>
+    <mysql.password>password</mysql.password>
   </properties>
 
   <dependencyManagement>

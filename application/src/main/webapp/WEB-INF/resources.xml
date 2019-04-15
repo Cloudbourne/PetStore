@@ -17,7 +17,7 @@
   <Resource id="DefaultDataSource" type="javax.sql.DataSource">
     JdbcDriver com.mysql.jdbc.Driver
     JdbcUrl ${mysql.jdbc.url}
-    UserName default
-    Password password
+    UserName ${mysql.user}
+    Password ${mysql.password}
   </Resource>
 </resources>
