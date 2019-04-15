@@ -15,7 +15,7 @@ deploy:
   context: myco/DEV
   replicas: 1
   port:
-  - 5000
+  - 8080
 
 monitor:
   notify: appzops@cloudbourne.co      
