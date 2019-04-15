@@ -7,7 +7,7 @@ build:
   version: 0.4
   env: DEV
   build_file: pom.xml
-  output_files: application/*.war
+  output_files: application/target/*.war
   image_template: tomcat8
   image_name: myco/petstore
 
