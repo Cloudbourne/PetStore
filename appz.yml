@@ -1,0 +1,24 @@
+app:
+  name: PetStore
+  code: PETSTORE
+  notify: appz@cloudbourne.co
+
+build:
+  version: 0.4
+  env: DEV
+  build_file: pom.xml
+  output_files: application/*.war
+  image_template: tomcat8
+  image_name: myco/petstore
+
+deploy:
+  context: myco/DEV
+  replicas: 1
+  port:
+  - 8080
+
+monitor:
+  notify: appzops@cloudbourne.co      
+
+properties:
+  revision : 15
