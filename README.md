@@ -1,11 +1,11 @@
-## Petstore Java EE 7 - WebSphere Version 
+## Petstore Java EE 7 on WebSphere 9 
 
 This branch (master) holds the original source of the application that was deployed in WebSphere. The project was then refactored to work on Tomcat on [AppZ](http://ecloudcontrol.com). See [appz branch](https://github.com/Cloudbourne/PetStore/tree/appz) for that version.
 
 * *Author* : [Antonio Goncalves](http://www.antoniogoncalves.org)
 * *Level* : Intermediate
 * *Technologies* : Java EE 7 (JPA 2.1, CDI 1.1, Bean Validation 1.1, EJB Lite 3.2, JSF 2.2, JAX-RS 2.0), Java SE 7 (because that's the minimum required by Java EE 7), Twitter Bootstrap (Bootstrap 3.x, JQuery 2.x, PrimeFaces 6.x)
-* *Application Servers* : WebSphere 7
+* *Application Servers* : WebSphere 9
 * *Summary* : A Petstore-like application using Java EE 7 running on WebSphere
 
 ## Purpose of this application
