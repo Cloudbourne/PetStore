@@ -237,14 +237,14 @@
       </build>
     </profile>
     <profile>
-      <id>custom</id>
+      <id>appz-k8s</id>
       <properties>
-        <mysql.jdbc.url>jdbc:mysql://mysql:3306/petstore</mysql.jdbc.url>
+        <mysql.jdbc.url>jdbc:mysql://mysql-5-7:3306/petstore</mysql.jdbc.url>
         <mysql.user>petstore</mysql.user>
         <mysql.password>petstore</mysql.password>
       </properties>
       <build>
-        <finalName>applicationPetstore-custom</finalName>
+        <finalName>applicationPetstore-appz-k8s</finalName>
       </build>
     </profile>
   </profiles>
