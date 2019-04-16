@@ -1,5 +1,8 @@
 ## Migration process
 
+* Source branch: **master**
+* Target branch: **appz**
+
 1. Generated ```web/WEB-INF/resources.xml```with datasource configuration
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
