@@ -57,8 +57,10 @@
         <profile>
           <id>websphere</id>
           <properties>
-            <mysql.jdbc.url>jdbc:mysql://localhost:3307/default</mysql.jdbc.url>
             <jta.datasource.name>DefaultDataSource</jta.datasource.name>
+            <mysql.jdbc.url>jdbc:mysql://localhost:3307/default</mysql.jdbc.url>
+            <mysql.user>default</mysql.user>
+            <mysql.password>password</mysql.password>
           </properties>
           <build>
             <finalName>applicationPetstore-websphere</finalName>
