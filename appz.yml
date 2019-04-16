@@ -21,5 +21,5 @@ monitor:
   notify: appzops@cloudbourne.co      
 
 properties:
-  revision : 18
+  revision : 19
   petstore_title : Tomcat Petstore BOSTON
