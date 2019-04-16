@@ -46,7 +46,7 @@
                                 <span class="icon-bar"></span>
                             </button>
                             <h:link class="navbar-brand" outcome="/shopping/main"
-                                    value="Yaps Petstore EE 7">
+                                    value="#{envVarBean.getValue('PETSTORE_TITLE', 'PetStore')} #{envVarBean.getValue('APPZ_IMAGE_VERSION', '1.0.0-SNAPSHOT')}">
                                 <!--<f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>-->
                             </h:link>
                         </div>
