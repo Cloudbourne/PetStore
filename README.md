@@ -78,6 +78,24 @@
         </profile>
       </profiles>
     ```
+    
+5. Generated ```docker/tomcat/conf/conf.d``` with following files:
+    ```
+        /PetStore/docker/tomcat/conf/catalina.policy
+        /PetStore/docker/tomcat/conf/catalina.properties
+        /PetStore/docker/tomcat/conf/context.xml
+        /PetStore/docker/tomcat/conf/jaspic-providers.xml
+        /PetStore/docker/tomcat/conf/jaspic-providers.xsd
+        /PetStore/docker/tomcat/conf/logging.properties
+        /PetStore/docker/tomcat/conf/server.xml
+        /PetStore/docker/tomcat/conf/server.xml.original
+        /PetStore/docker/tomcat/conf/system.properties
+        /PetStore/docker/tomcat/conf/tomcat-users.xml
+        /PetStore/docker/tomcat/conf/tomcat-users.xml.original
+        /PetStore/docker/tomcat/conf/tomcat-users.xsd
+        /PetStore/docker/tomcat/conf/tomee.xml
+        /PetStore/docker/tomcat/conf/web.xml
+    ```
 5. Build samples:
     * ```mvn clean```
     * ```mvn package``` — default to tomcat (custom)
