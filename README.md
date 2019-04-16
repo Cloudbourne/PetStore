@@ -1,4 +1,6 @@
-## Migration process
+## Petstore - Tomcat 8 EE7 version
+
+### Migration process
 
 * Source branch: **master**
 * Target branch: **appz**
