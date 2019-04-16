@@ -19,7 +19,7 @@
                 <area alt="Birds" coords="280,180,350,250" shape="RECT" href="showproducts.xhtml?categoryName=Birds"/>
             </map>
             <img src="#{resource['splash.gif']}" border="0" width="350" height="355" align="middle" usemap="#pestoremap"
-                 alt="Welcome to YAPS PetStore"/>
+                 alt="Welcome to #{envVarBean.getValue('PETSTORE_TITLE', 'PetStore')} #{envVarBean.getValue('APPZ_IMAGE_VERSION', '1.0.0-SNAPSHOT')}"/>
         </div>
     </ui:define>
 </ui:composition>
