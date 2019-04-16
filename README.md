@@ -1,9 +1,7 @@
 
 ## Migration process
 
-1. In the existing code sources find ```web/WEB-INF``` directory.
-2. Create file named ```resources.xml``` inside it.
-3. Define datasource configuration like it is done below
+1. Generated ```web/WEB-INF/resources.xml```with datasource configuration
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <!--
@@ -30,25 +28,24 @@
     </resources>
     ``` 
 
-4. Modify pom.xml to support simulations build for tomcat and other servers both
-    Add properties
+2. Modified pom.xml to support simulations build for tomcat and other servers both
     ```xml
       <properties>
           <mysql.jdbc.url>jdbc:mysql://mysql-5-7:3306/petstore</mysql.jdbc.url>
           <mysql.user>petstore</mysql.user>
-          <mysql.password>petstore</mysql.password>
+          <mysql.password>${mysql.password}</mysql.password>
       </properties>
     ```
     
-    Add profiles
+    Added profiles to support both builds
     ```xml
     <profiles>
         <profile>
           <id>tomcat</id>
           <properties>
             <mysql.jdbc.url>jdbc:mysql://mysql-tomcat:3306/default</mysql.jdbc.url>
-            <mysql.user>default</mysql.user>
-            <mysql.password>password</mysql.password>
+            <mysql.user>petstore</mysql.user>
+            <mysql.password>${mysql.password}</mysql.password>
           </properties>
           <build>
             <finalName>applicationPetstore-tomcat</finalName>
@@ -59,8 +56,8 @@
           <properties>
             <jta.datasource.name>DefaultDataSource</jta.datasource.name>
             <mysql.jdbc.url>jdbc:mysql://localhost:3307/default</mysql.jdbc.url>
-            <mysql.user>default</mysql.user>
-            <mysql.password>password</mysql.password>
+            <mysql.user>petstore</mysql.user>
+            <mysql.password>${mysql.password}</mysql.password>
           </properties>
           <build>
             <finalName>applicationPetstore-websphere</finalName>
@@ -71,7 +68,7 @@
           <properties>
             <mysql.jdbc.url>jdbc:mysql://mysql-5-7:3306/petstore</mysql.jdbc.url>
             <mysql.user>petstore</mysql.user>
-            <mysql.password>petstore</mysql.password>
+            <mysql.password>${mysql.password}</mysql.password>
           </properties>
           <build>
             <finalName>applicationPetstore-appz-k8s</finalName>
@@ -79,40 +76,16 @@
         </profile>
       </profiles>
     ```
-5. Build your war for specific server
+5. Build samples:
     * ```mvn clean```
     * ```mvn package``` — default to tomcat (custom)
     * ```mvn package -Ptomcat``` — default to tomcat (default)
     * ```mvn package -Pwebsphere``` — default to websphere
-6. If you use Tomcat, pack war inside docker image or mount it like a volume. 
+6. When using tomcat, pack war inside docker image or mount it like a volume. 
    Deploy it somewhere using Docker or Kubernetes. 
    
-   If you use WebSphere, deploy war manually on the server node.
+   When using WebSphere, deploy war manually on the server node.
 
-7. Check [http://example.com/applicationPetstore](http://example.com/applicationPetstore)
+7. Application url example: http://example.com/applicationPetstore
 
-
-## Usage
-
-### 1) Application
-
-* ```cd application```
-* ```mvn clean```
-* ```mvn package -Ptomcat```
-* ```mvn package -Pwebsphere```
-
-### 2) Mysql
-
-* ```cd docker```
-* ```docker-compose up -d mysql```
-
-### 3.a) IBM Websphere
-
-* ```cd webspere```
-* ```vagrant plugin install vagrant-vbguest```
-* ```vagrant up```
-
-### 3.b) Tomcat Docker
-
-* ```cd docker```
-* ```docker-compose up -d tomcat```
+8. Generated [appz.yml](appz.yml) 
