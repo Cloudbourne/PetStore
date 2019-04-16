@@ -1,4 +1,3 @@
-
 ## Migration process
 
 1. Generated ```web/WEB-INF/resources.xml```with datasource configuration
