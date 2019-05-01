@@ -220,7 +220,7 @@
     <profile>
       <id>tomcat</id>
       <properties>
-        <mysql.jdbc.url>jdbc:mysql://mysql-tomcat:3306/default</mysql.jdbc.url>
+        <mysql.jdbc.url>jdbc:mysql://mysql-tomcat:3306/default?tcpKeepAlive=true</mysql.jdbc.url>
         <mysql.user>default</mysql.user>
         <mysql.password>password</mysql.password>
       </properties>
@@ -232,7 +232,7 @@
       <id>websphere</id>
       <properties>
         <jta.datasource.name>DefaultDataSource</jta.datasource.name>
-        <mysql.jdbc.url>jdbc:mysql://localhost:3307/default</mysql.jdbc.url>
+        <mysql.jdbc.url>jdbc:mysql://localhost:3307/default?tcpKeepAlive=true</mysql.jdbc.url>
         <mysql.user>default</mysql.user>
         <mysql.password>password</mysql.password>
       </properties>
@@ -243,7 +243,7 @@
     <profile>
       <id>appz-k8s</id>
       <properties>
-        <mysql.jdbc.url>jdbc:mysql://mysql-5-7:3306/petstore</mysql.jdbc.url>
+        <mysql.jdbc.url>jdbc:mysql://mysql-5-7:3306/petstore?tcpKeepAlive=true</mysql.jdbc.url>
         <mysql.user>petstore</mysql.user>
         <mysql.password>petstore</mysql.password>
       </properties>

@@ -19,5 +19,13 @@
     JdbcUrl ${mysql.jdbc.url}
     UserName ${mysql.user}
     Password ${mysql.password}
+
+    JtaManaged true
+    ValidationQuery = SELECT 1
+    ValidationInterval = 30000
+    NumTestsPerEvictionRun = 5
+    TimeBetweenEvictionRuns = 30 seconds
+    TestWhileIdle = true
+    MaxActive = 200
   </Resource>
 </resources>
