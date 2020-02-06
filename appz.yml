@@ -21,5 +21,5 @@ monitor:
   notify: appzops@cloudbourne.co      
 
 properties:
-  revision : 27
+  revision : 28
   petstore_title : Tomcat Petstore EUR
