@@ -21,7 +21,7 @@ monitor:
   notify: appzops@cloudbourne.co      
 
 properties:
-  revision : 33
+  revision : 34
   petstore_title : Hello Petstore 
   DB_PASSWORD:
     vault: DB_PASSWORD
