@@ -13,7 +13,7 @@
   <properties>
     <version.javaee>7.0</version.javaee>
     <version.jboss-javaee>1.1.0.Final</version.jboss-javaee>
-    <version.log4j>2.8.2</version.log4j>
+    <version.log4j>2.13.2</version.log4j>
     <!-- App servers -->
     <version.wildfly>11.0.0.Final</version.wildfly>
     <!-- UI (WebJar, Bootstrap, JQuery...) -->
