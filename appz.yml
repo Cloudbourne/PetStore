@@ -21,7 +21,7 @@ monitor:
   notify: appzops@cloudbourne.co      
 
 properties:
-  revision : 34
+  revision : 35
   petstore_title : Hello Petstore 
   DB_URL: jdbc:mysql://mysql-5-7:3306/petstore
   DB_USER: petstore
