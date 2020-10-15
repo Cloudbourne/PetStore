@@ -18,7 +18,7 @@
     JdbcDriver com.mysql.jdbc.Driver
     JdbcUrl ${mysql.jdbc.url}
     UserName ${mysql.user}
-    Password ${mysql.password}
+    Password ${DB_PASSWORD}
 
     JtaManaged true
     ValidationQuery = SELECT 1
