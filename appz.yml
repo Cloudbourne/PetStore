@@ -23,5 +23,7 @@ monitor:
 properties:
   revision : 33
   petstore_title : Hello Petstore 
+  DB_URL: jdbc:mysql://mysql-5-7:3306/petstore
+  DB_USER: petstore
   DB_PASSWORD:
     vault: DB_PASSWORD
