@@ -1,4 +1,4 @@
-## Petstore Java EE 7 on Tomcat 8.5
+## Petstore Java EE 7
 
 ### Migration process
 
