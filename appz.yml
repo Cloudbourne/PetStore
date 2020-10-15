@@ -23,3 +23,5 @@ monitor:
 properties:
   revision : 31
   petstore_title : Hello Petstore 
+  DB_PASSWORD:
+    vault: DB_PASSWORD
